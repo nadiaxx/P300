@@ -15,5 +15,23 @@ mongoose.connect('mongodb+srv://nadia:nadia@p300.g2wyq1k.mongodb.net/?retryWrite
 .then(() => console.log("Connected to MongoDB"))
 .catch(console.error);
 
+//models
+const Todo = require('./models/Todo');
+
+app.get('/todos', async (req, res) => {
+	const todos = await Todo.find();
+
+	res.json(todos);
+});
 
 
+
+
+
+
+
+
+
+
+
+app.listen(3001, () => console.log("server started on port 3001"));
