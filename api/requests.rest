@@ -11,11 +11,11 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3001/todo/delete/6432fe336ff34a1fbf4b8ea7
+DELETE http://localhost:3001/todo/delete/6432ffec31a60395fc69fe5c
 
 ###
 
-GET http://localhost:3001/todo/complete/60e585d86177f95ff0574323
+GET http://localhost:3001/todo/complete/
 
 ###
 
