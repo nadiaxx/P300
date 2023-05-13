@@ -15,6 +15,7 @@ mongoose.connect('mongodb+srv://nadia:nadia@p300.g2wyq1k.mongodb.net/?retryWrite
 .then(() => console.log("Connected to MongoDB"))
 .catch(console.error);
 
+
 //models
 const Todo = require('./models/Todo');
 

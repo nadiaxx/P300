@@ -6,17 +6,16 @@ POST http://localhost:3001/todo/new
 Content-Type: application/json
 
 {
-	"text": "Pick up Mumu"
+	"text": "Pick up Mom"
 }
 
 ###
 
-DELETE http://localhost:3001/todo/delete/64330d782379e92241d17e1d
-
+DELETE http://localhost:3001/todo/delete/645fb80a0a86e20670ab730b
 
 ###
 
-GET http://localhost:3001/todo/complete/
+GET http://localhost:3001/todo/complete/60e585d86177f95ff0574323
 
 ###
 
@@ -24,5 +23,5 @@ PUT http://localhost:3001/todo/update/60e585d86177f95ff0574323
 Content-Type: application/json
 
 {
-	"text": "Go Shopping for Cloath"
+	"text": "Go Shopping for Milk"
 }
