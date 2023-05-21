@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb+srv://nadia:nadia@p300.g2wyq1k.mongodb.net/?retryWrites=true&w=majority', 
+mongoose.connect('mongodb+srv://nadia:nadia@cluster0.0er2hsk.mongodb.net/?retryWrites=true&w=majority', 
 {
 	useNewUrlParser: true, 
 	useUnifiedTopology: true 
