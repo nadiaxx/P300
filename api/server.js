@@ -7,23 +7,26 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb+srv://nadia:nadia@cluster0.0er2hsk.mongodb.net/?retryWrites=true&w=majority', 
-{
-	useNewUrlParser: true, 
-	useUnifiedTopology: true 
-})
-.then(() => console.log("Connected to MongoDB"))
-.catch(console.error);
+mongoose.connect('mongodb+srv://nadia:nadia@cluster0.0er2hsk.mongodb.net/?retryWrites=true&w=majority',
+	{
+		useNewUrlParser: true,
+		useUnifiedTopology: true
+	})
+	.then(() => console.log("Connected to MongoDB"))
+	.catch(console.error);
 
 
 //models
 const Todo = require('./models/Todo');
 
+
 app.get('/todos', async (req, res) => {
-	const todos = await Todo.find();
+	const sortOrder = req.query.sort || 'asc';
+	const todos = await Todo.find().sort({ text: sortOrder });
 
 	res.json(todos);
 });
+
 
 app.post('/todo/new', (req, res) => {
 	const todo = new Todo({
@@ -38,7 +41,7 @@ app.post('/todo/new', (req, res) => {
 app.delete('/todo/delete/:id', async (req, res) => {
 	const result = await Todo.findByIdAndDelete(req.params.id);
 
-	res.json({result});
+	res.json({ result });
 });
 
 app.get('/todo/complete/:id', async (req, res) => {

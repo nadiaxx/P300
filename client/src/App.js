@@ -7,34 +7,46 @@ function App() {
 	const [newTodo, setNewTodo] = useState("");
 
 	useEffect(() => {
-		GetTodos();
+		GetTodos("asc");
 	}, []);
 
-	const GetTodos = () => {
-		fetch(api_base + '/todos')
-			.then(res => res.json())
-			.then(data => setTodos(data))
+
+	const GetTodos = (sortOrder) => {
+		fetch(api_base + `/todos?sort=${sortOrder}`)
+			.then((res) => res.json())
+			.then((data) => setTodos(data))
 			.catch((err) => console.error("Error: ", err));
-	}
+	};
 
-	const completeTodo = async id => {
-		const data = await fetch(api_base + '/todo/complete/' + id).then(res => res.json());
 
-		setTodos(todos => todos.map(todo => {
-			if (todo._id === data._id) {
+	const completeTodo = async (id) => {
+		try {
+		  const response = await fetch(api_base + '/todo/complete/' + id);
+		  if (!response.ok) {
+			throw new Error('Failed to complete todo');
+		  }
+		  const data = await response.json();
+	  
+		  setTodos((todos) =>
+			todos.map((todo) => {
+			  if (todo._id === data._id) {
 				todo.complete = data.complete;
-			}
+			  }
+			  return todo;
+			})
+		  );
+		} catch (error) {
+		  console.error(error);
+		}
+	  };
+	  
 
-			return todo;
-		}));
-		
-	}
 
 	const addTodo = async () => {
 		const data = await fetch(api_base + "/todo/new", {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json" 
+				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
 				text: newTodo
@@ -55,8 +67,20 @@ function App() {
 
 	return (
 		<div className="App">
-			<h1>Welcome, Nadia</h1>
+			<h1>Welcome, Tyler</h1>
 			<h4>Your tasks</h4>
+
+			<div className="sorting-container">
+				<label htmlFor="sortSelect">Sort Order:</label>
+				<select
+					id="sortSelect"
+					onChange={(e) => GetTodos(e.target.value)}
+				>
+					<option value="asc">Ascending</option>
+					<option value="desc">Descending</option>
+				</select>
+			</div>
+
 
 			<div className="todos">
 				{todos.length > 0 ? todos.map(todo => (

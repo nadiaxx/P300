@@ -1,10 +1,10 @@
 :root {
-	--primary: #971842;
-	--secondary: #692cda;
+	--primary: #b11b4d;
+	--secondary: #7e3bfa;
 	--light: rgb(209, 206, 206);
 	--light-alt: #758cb8;
 	--dark: #0d121a;
-	--dark-alt: #1c283b;
+	--dark-alt: #223047;
 }
 
 * {
@@ -92,6 +92,7 @@ h4 {
 	justify-content: center;
 	font-weight: 700;
 }
+
 .addPopup {
 	position: fixed;
 	bottom: 32px;
@@ -167,3 +168,18 @@ h4 {
 	text-align: center;
 	cursor: pointer;
 }
+
+.sorting-container {
+	margin-bottom: 20px;
+  }
+  
+  label {
+	margin-right: 10px;
+  }
+  
+  select {
+	padding: 5px 10px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+  }
